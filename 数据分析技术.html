@@ -371,9 +371,13 @@
             transition: all 0.3s ease;
         }
 
-        .option:hover {
+        .option:hover:not(.answered) {
             border-color: var(--primary-color);
             background-color: #eff6ff;
+        }
+
+        .option.answered {
+            cursor: default;
         }
 
         .option.selected {
@@ -476,6 +480,45 @@
             cursor: not-allowed;
         }
 
+        .finish-quiz-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .finish-quiz-btn:hover:not(:disabled) {
+            background-color: #2563eb;
+        }
+
+        .finish-quiz-btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .view-wrong-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .view-wrong-btn:hover {
+            background-color: #d97706;
+        }
+
         .results-container {
             text-align: center;
             padding: 2rem;
@@ -548,6 +591,40 @@
 
         .next-chapter-btn:hover {
             background-color: #059669;
+        }
+
+        .wrong-answers-container {
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        .wrong-answers-container h3 {
+            color: var(--error-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .wrong-question {
+            background-color: #fef2f2;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--error-color);
+        }
+
+        .wrong-question .question-text {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .wrong-question .your-answer {
+            color: var(--error-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .wrong-question .correct-answer {
+            color: var(--success-color);
+            margin-bottom: 1rem;
         }
 
         @keyframes fadeIn {
@@ -632,12 +709,14 @@
             <div class="quiz-container">
                 <div class="quiz-header">
                     <h2>📝 第X章测试</h2>
-                    <p>共10道题，全部答完后提交查看解析</p>
+                    <p>每道题选择后立即显示解析，全部做完后可查看错题</p>
                 </div>
                 
                 <div id="quizContent"></div>
                 
-                <button class="submit-quiz-btn" id="submitQuizBtn" onclick="submitQuiz()">提交答案</button>
+                <div class="action-buttons" id="quizActions">
+                    <button class="finish-quiz-btn" id="finishQuizBtn" onclick="finishQuiz()" disabled>完成测试</button>
+                </div>
             </div>
         </div>
     </section>
@@ -987,6 +1066,8 @@
         let currentChapterIndex = 0;
         let completedChapters = new Set();
         let selectedAnswers = {};
+        let answeredQuestions = new Set();
+        let wrongAnswers = [];
 
         function init() {
             loadProgress();
@@ -1061,6 +1142,8 @@
             }
 
             selectedAnswers = {};
+            answeredQuestions = new Set();
+            wrongAnswers = [];
             
             document.querySelector('.quiz-header h2').textContent = '📝 ' + chapter.title + ' 测试';
             document.getElementById('quizSection').classList.add('active');
@@ -1069,27 +1152,45 @@
             document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function renderQuiz(chapter) {
+        function renderQuiz(chapter, showAll = false) {
             const quizContent = document.getElementById('quizContent');
             quizContent.innerHTML = '';
             
-            chapter.quiz.forEach((q, index) => {
+            const questionsToShow = showAll ? chapter.quiz : chapter.quiz;
+            
+            questionsToShow.forEach((q, index) => {
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'question-container fade-in';
                 questionDiv.style.animationDelay = (index * 0.1) + 's';
+                
+                const isAnswered = answeredQuestions.has(index);
+                const isCorrect = isAnswered && selectedAnswers[index] === q.correct;
+                
+                let optionsHtml = q.options.map((opt, optIndex) => {
+                    let optionClass = '';
+                    if (isAnswered) {
+                        if (optIndex === q.correct) {
+                            optionClass = ' correct';
+                        } else if (selectedAnswers[index] === optIndex) {
+                            optionClass = ' incorrect';
+                        }
+                        optionClass += ' answered';
+                    }
+                    return `
+                        <div class="option${optionClass}" data-question="${index}" data-option="${optIndex}" onclick="selectOption(${index}, ${optIndex})">
+                            <div class="option-radio"></div>
+                            <span>${opt}</span>
+                        </div>
+                    `;
+                }).join('');
                 
                 questionDiv.innerHTML = `
                     <span class="question-number">第 ${index + 1} 题</span>
                     <p class="question-text">${q.question}</p>
                     <div class="options">
-                        ${q.options.map((opt, optIndex) => `
-                            <div class="option" data-question="${index}" data-option="${optIndex}" onclick="selectOption(${index}, ${optIndex})">
-                                <div class="option-radio"></div>
-                                <span>${opt}</span>
-                            </div>
-                        `).join('')}
+                        ${optionsHtml}
                     </div>
-                    <div class="explanation" id="explanation-${index}">
+                    <div class="explanation ${isAnswered ? 'show' : ''}" id="explanation-${index}">
                         <h5>📚 解析</h5>
                         <p>${q.explanation}</p>
                     </div>
@@ -1098,65 +1199,64 @@
                 quizContent.appendChild(questionDiv);
             });
             
-            document.getElementById('submitQuizBtn').style.display = 'block';
+            document.getElementById('finishQuizBtn').disabled = answeredQuestions.size < chapter.quiz.length;
+            document.getElementById('quizActions').style.display = 'flex';
         }
 
         function selectOption(questionIndex, optionIndex) {
-            selectedAnswers[questionIndex] = optionIndex;
-            
-            const questionDiv = document.querySelectorAll('.question-container')[questionIndex];
-            const options = questionDiv.querySelectorAll('.option');
-            
-            options.forEach((opt, idx) => {
-                opt.classList.remove('selected');
-                if (idx === optionIndex) {
-                    opt.classList.add('selected');
-                }
-            });
-        }
-
-        function submitQuiz() {
             const chapter = chapters[currentChapterIndex];
             
-            if (Object.keys(selectedAnswers).length < chapter.quiz.length) {
-                alert('请完成所有题目后再提交！');
+            if (answeredQuestions.has(questionIndex)) {
                 return;
             }
 
-            let correctCount = 0;
-            
-            chapter.quiz.forEach((q, index) => {
-                const questionDiv = document.querySelectorAll('.question-container')[index];
-                const options = questionDiv.querySelectorAll('.option');
-                
-                options.forEach((opt, optIndex) => {
-                    opt.style.pointerEvents = 'none';
-                    
-                    if (optIndex === q.correct) {
-                        opt.classList.add('correct');
-                    } else if (selectedAnswers[index] === optIndex) {
-                        opt.classList.add('incorrect');
-                    }
-                });
-                
-                document.getElementById(`explanation-${index}`).classList.add('show');
-                
-                if (selectedAnswers[index] === q.correct) {
-                    correctCount++;
+            selectedAnswers[questionIndex] = optionIndex;
+            answeredQuestions.add(questionIndex);
+
+            const questionDiv = document.querySelectorAll('.question-container')[questionIndex];
+            const options = questionDiv.querySelectorAll('.option');
+            const q = chapter.quiz[questionIndex];
+
+            options.forEach((opt, idx) => {
+                opt.classList.add('answered');
+                opt.classList.remove('selected');
+                if (idx === q.correct) {
+                    opt.classList.add('correct');
+                } else if (idx === optionIndex && optionIndex !== q.correct) {
+                    opt.classList.add('incorrect');
                 }
             });
 
+            document.getElementById(`explanation-${questionIndex}`).classList.add('show');
+
+            if (selectedAnswers[questionIndex] !== q.correct) {
+                wrongAnswers.push({
+                    index: questionIndex,
+                    question: q.question,
+                    yourAnswer: q.options[optionIndex],
+                    correctAnswer: q.options[q.correct],
+                    explanation: q.explanation
+                });
+            }
+
+            if (answeredQuestions.size === chapter.quiz.length) {
+                document.getElementById('finishQuizBtn').disabled = false;
+            }
+        }
+
+        function finishQuiz() {
+            const chapter = chapters[currentChapterIndex];
+            
+            let correctCount = chapter.quiz.length - wrongAnswers.length;
             const score = Math.round((correctCount / chapter.quiz.length) * 100);
             
-            setTimeout(() => {
-                showResults(score, correctCount, chapter.quiz.length);
-            }, 500);
+            showResults(score, correctCount, chapter.quiz.length);
         }
 
         function showResults(score, correctCount, total) {
             const quizContent = document.getElementById('quizContent');
-            const submitBtn = document.getElementById('submitQuizBtn');
-            
+            const quizActions = document.getElementById('quizActions');
+
             let message = '';
             if (score >= 90) {
                 message = '🎉 优秀！你掌握得非常好！';
@@ -1166,6 +1266,26 @@
                 message = '💪 合格！建议重新学习本章内容。';
             } else {
                 message = '📚 需要继续努力！建议重新学习后再测试。';
+            }
+
+            let wrongAnswersHtml = '';
+            if (wrongAnswers.length > 0) {
+                wrongAnswersHtml = `
+                    <div class="wrong-answers-container">
+                        <h3>❌ 错题回顾</h3>
+                        ${wrongAnswers.map(wa => `
+                            <div class="wrong-question">
+                                <p class="question-text">第 ${wa.index + 1} 题：${wa.question}</p>
+                                <p class="your-answer">你的答案：${wa.yourAnswer}</p>
+                                <p class="correct-answer">正确答案：${wa.correctAnswer}</p>
+                                <div class="explanation show">
+                                    <h5>📚 解析</h5>
+                                    <p>${wa.explanation}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
             }
 
             quizContent.innerHTML = `
@@ -1178,18 +1298,27 @@
                     </div>
                     <h2 class="result-message">${message}</h2>
                     <p class="result-details">正确 ${correctCount} 题，共 ${total} 题</p>
+                    ${wrongAnswersHtml}
                     <div class="action-buttons">
                         <button class="retry-btn" onclick="retryQuiz()">重新测试</button>
+                        ${wrongAnswers.length > 0 ? `<button class="view-wrong-btn" onclick="viewAllAnswers()">查看所有题目</button>` : ''}
                         <button class="next-chapter-btn" onclick="nextChapter()">下一章</button>
                     </div>
                 </div>
             `;
-            
-            submitBtn.style.display = 'none';
+
+            quizActions.style.display = 'none';
+        }
+
+        function viewAllAnswers() {
+            const chapter = chapters[currentChapterIndex];
+            renderQuiz(chapter, true);
         }
 
         function retryQuiz() {
             selectedAnswers = {};
+            answeredQuestions = new Set();
+            wrongAnswers = [];
             const chapter = chapters[currentChapterIndex];
             renderQuiz(chapter);
         }
