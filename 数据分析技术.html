@@ -274,6 +274,150 @@
             margin-bottom: 0;
         }
 
+        .code-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .code-editor {
+            background-color: #1e293b;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background-color: #334155;
+            border-bottom: 1px solid #475569;
+        }
+
+        .code-language {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .code-action-btn {
+            padding: 0.25rem 0.75rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .code-action-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .code-action-btn.run {
+            background-color: var(--success-color);
+        }
+
+        .code-action-btn.run:hover {
+            background-color: #059669;
+        }
+
+        .code-action-btn.reset {
+            background-color: #64748b;
+        }
+
+        .code-action-btn.reset:hover {
+            background-color: #475569;
+        }
+
+        textarea.code-input {
+            width: 100%;
+            height: 250px;
+            padding: 1rem;
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border: none;
+            resize: none;
+            line-height: 1.5;
+        }
+
+        textarea.code-input:focus {
+            outline: none;
+        }
+
+        .code-output {
+            background-color: #0f172a;
+            padding: 1rem;
+            min-height: 100px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .code-output pre {
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .code-output .error {
+            color: #ef4444;
+        }
+
+        .code-output .success {
+            color: #10b981;
+        }
+
+        .code-output .info {
+            color: #3b82f6;
+        }
+
+        .learning-content .code-block {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .learning-content .code-block .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: #334155;
+            color: #e2e8f0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .learning-content .code-block:hover .copy-btn {
+            opacity: 1;
+        }
+
+        .learning-content .code-block .copy-btn:hover {
+            background-color: #475569;
+        }
+
         .complete-btn {
             display: inline-block;
             background-color: var(--success-color);
@@ -756,6 +900,76 @@
                         <div class="highlight-box">
                             <h4>💡 关键点</h4>
                             <p>数据分析的核心不是复杂的数学公式，而是如何将数据转化为可行动的洞察。好的数据分析应该回答具体的业务问题。</p>
+                        </div>
+
+                        <h4>1.4 Python数据分析入门</h4>
+                        <p>Python是数据分析最常用的编程语言之一，拥有丰富的数据分析库。下面是一个简单的数据分析示例：</p>
+
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            <pre># 导入pandas库
+import pandas as pd
+
+# 创建简单的数据集
+data = {
+    '姓名': ['张三', '李四', '王五', '赵六'],
+    '年龄': [25, 30, 28, 32],
+    '销售额': [1000, 1500, 1200, 1800]
+}
+
+# 创建DataFrame
+df = pd.DataFrame(data)
+
+# 显示数据
+print(df)
+
+# 计算统计信息
+print("\\n销售额统计：")
+print(f"总销售额: {df['销售额'].sum()}")
+print(f"平均销售额: {df['销售额'].mean():.2f}")
+print(f"最高销售额: {df['销售额'].max()}")</pre>
+                        </div>
+
+                        <div class="code-section">
+                            <div class="code-editor">
+                                <div class="code-header">
+                                    <span class="code-language">Python</span>
+                                    <div class="code-actions">
+                                        <button class="code-action-btn run" onclick="runCode()">运行代码</button>
+                                        <button class="code-action-btn reset" onclick="resetCode()">重置</button>
+                                    </div>
+                                </div>
+                                <textarea class="code-input" id="codeInput">
+# 尝试编写你的第一个数据分析代码
+import pandas as pd
+
+# 创建数据
+data = {
+    '产品': ['A', 'B', 'C', 'D'],
+    '销量': [100, 150, 80, 200],
+    '价格': [50, 80, 120, 60]
+}
+
+# 创建DataFrame
+df = pd.DataFrame(data)
+
+# 计算总销售额
+df['销售额'] = df['销量'] * df['价格']
+
+# 显示结果
+print("产品销售数据：")
+print(df)
+print("\\n总销售额：", df['销售额'].sum())
+                                </textarea>
+                            </div>
+                            <div class="code-editor">
+                                <div class="code-header">
+                                    <span class="code-language">输出结果</span>
+                                </div>
+                                <div class="code-output" id="codeOutput">
+                                    <pre>点击「运行代码」按钮查看输出结果</pre>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `,
@@ -1332,6 +1546,81 @@
         }
 
         document.addEventListener('DOMContentLoaded', init);
+
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const output = document.getElementById('codeOutput');
+            
+            try {
+                const result = window.pyodide.runPython(code);
+                let outputText = '';
+                
+                if (result !== undefined) {
+                    outputText = result.toString();
+                }
+                
+                const capturedOutput = window.pyodide.runPython(`
+import sys
+from io import StringIO
+sys.stdout = captured_output = StringIO()
+${code}
+sys.stdout = sys.__stdout__
+captured_output.getvalue()
+                `);
+                
+                output.innerHTML = `<pre class="success">${capturedOutput || outputText}</pre>`;
+            } catch (error) {
+                output.innerHTML = `<pre class="error">❌ 运行错误:\n${error.message}</pre>`;
+            }
+        }
+
+        function resetCode() {
+            const defaultCode = `# 尝试编写你的第一个数据分析代码
+import pandas as pd
+
+# 创建数据
+data = {
+    '产品': ['A', 'B', 'C', 'D'],
+    '销量': [100, 150, 80, 200],
+    '价格': [50, 80, 120, 60]
+}
+
+# 创建DataFrame
+df = pd.DataFrame(data)
+
+# 计算总销售额
+df['销售额'] = df['销量'] * df['价格']
+
+# 显示结果
+print("产品销售数据：")
+print(df)
+print("\\n总销售额：", df['销售额'].sum())`;
+            
+            document.getElementById('codeInput').value = defaultCode;
+            document.getElementById('codeOutput').innerHTML = '<pre>点击「运行代码」按钮查看输出结果</pre>';
+        }
+
+        function copyCode(btn) {
+            const codeBlock = btn.parentElement;
+            const code = codeBlock.querySelector('pre').textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = '已复制';
+                setTimeout(() => {
+                    btn.textContent = '复制';
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+    <script>
+        async function loadPyodide() {
+            self.pyodide = await loadPyodide();
+            await self.pyodide.loadPackage(['pandas']);
+        }
+        loadPyodide();
     </script>
 </body>
 </html>
