@@ -57,7 +57,6 @@
             padding: 0 1.5rem;
         }
 
-        /* Navigation */
         nav {
             background-color: white;
             box-shadow: var(--shadow);
@@ -100,7 +99,6 @@
             transform: translateX(-5px);
         }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary-color), #60a5fa);
             color: white;
@@ -120,7 +118,46 @@
             margin: 0 auto;
         }
 
-        /* Progress Bar */
+        .chapter-nav {
+            background-color: white;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .chapter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .chapter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e2e8f0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .chapter-btn:hover {
+            border-color: var(--primary-color);
+            background-color: #eff6ff;
+        }
+
+        .chapter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .chapter-btn.completed {
+            border-color: var(--success-color);
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
         .progress-section {
             background-color: white;
             padding: 2rem 0;
@@ -165,7 +202,6 @@
             transition: width 0.5s ease;
         }
 
-        /* Learning Section */
         .learning-section {
             padding: 4rem 0;
             background-color: white;
@@ -178,78 +214,12 @@
             color: var(--dark-color);
         }
 
-        .learning-module {
-            background-color: var(--light-color);
-            border-radius: var(--border-radius);
-            padding: 2rem;
+        .chapter-title {
+            font-size: 1.75rem;
+            color: var(--primary-color);
             margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        .module-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            cursor: pointer;
             padding-bottom: 1rem;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .module-title {
-            font-size: 1.3rem;
-            color: var(--dark-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .module-number {
-            background-color: var(--primary-color);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .module-status {
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .module-status.completed {
-            background-color: #d1fae5;
-            color: #065f46;
-        }
-
-        .module-status.in-progress {
-            background-color: #fef3c7;
-            color: #92400e;
-        }
-
-        .module-status.pending {
-            background-color: #e2e8f0;
-            color: #475569;
-        }
-
-        .module-content {
-            display: none;
-        }
-
-        .module-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .learning-content {
-            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--primary-color);
         }
 
         .learning-content h4 {
@@ -322,13 +292,6 @@
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
         }
 
-        .complete-btn:disabled {
-            background-color: #9ca3af;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Quiz Section */
         .quiz-section {
             padding: 4rem 0;
             background-color: #f1f5f9;
@@ -463,6 +426,31 @@
             background-color: var(--error-color);
         }
 
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #fef3c7;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--accent-color);
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .explanation h5 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+
+        .explanation p {
+            color: #78350f;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
         .submit-quiz-btn {
             display: block;
             width: 100%;
@@ -487,7 +475,6 @@
             cursor: not-allowed;
         }
 
-        /* Results Section */
         .results-container {
             text-align: center;
             padding: 2rem;
@@ -502,7 +489,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 2rem;
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
         }
 
         .score-text {
@@ -527,24 +514,41 @@
             margin-bottom: 2rem;
         }
 
-        .retry-btn {
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .retry-btn, .next-chapter-btn {
             display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
             padding: 1rem 2rem;
             border-radius: var(--border-radius);
             font-weight: 600;
             cursor: pointer;
             border: none;
             transition: all 0.3s ease;
-            margin-right: 1rem;
+        }
+
+        .retry-btn {
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .retry-btn:hover {
             background-color: #2563eb;
         }
 
-        /* Animations */
+        .next-chapter-btn {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .next-chapter-btn:hover {
+            background-color: #059669;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -560,30 +564,18 @@
             animation: fadeIn 0.5s ease forwards;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
             }
 
-            .learning-module {
-                padding: 1.5rem;
-            }
-
             .quiz-container {
                 padding: 1.5rem;
-            }
-
-            .module-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <div class="nav-logo">数据分析技术</div>
@@ -591,7 +583,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <h1>📊 数据分析技术</h1>
@@ -599,11 +590,17 @@
         </div>
     </section>
 
-    <!-- Progress Bar -->
+    <section class="chapter-nav">
+        <div class="container">
+            <div class="chapter-buttons" id="chapterNav">
+            </div>
+        </div>
+    </section>
+
     <section class="progress-section">
         <div class="progress-container">
             <div class="progress-header">
-                <span class="progress-title">学习进度</span>
+                <span class="progress-title">总体学习进度</span>
                 <span class="progress-percentage" id="progressPercentage">0%</span>
             </div>
             <div class="progress-bar">
@@ -612,551 +609,502 @@
         </div>
     </section>
 
-    <!-- Learning Section -->
     <section class="learning-section">
         <div class="container">
-            <h2 class="section-title">📚 课程学习</h2>
+            <h2 class="chapter-title" id="chapterTitle">第1章：数据分析概述</h2>
             
-            <!-- Module 1 -->
-            <div class="learning-module">
-                <div class="module-header" onclick="toggleModule(1)">
-                    <div class="module-title">
-                        <span class="module-number">1</span>
-                        数据分析概述
-                    </div>
-                    <span class="module-status pending" id="status-1">未开始</span>
+            <div id="learningContent">
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="complete-btn" onclick="completeChapter()">完成本章学习</button>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button class="complete-btn" style="background-color: var(--primary-color);" onclick="startQuiz()">开始本章测试</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="quiz-section" id="quizSection">
+        <div class="container">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2>📝 第X章测试</h2>
+                    <p>共10道题，全部答完后提交查看解析</p>
                 </div>
-                <div class="module-content" id="content-1">
+                
+                <div id="quizContent"></div>
+                
+                <button class="submit-quiz-btn" id="submitQuizBtn" onclick="submitQuiz()">提交答案</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const chapters = [
+            {
+                id: 1,
+                title: "第1章：数据分析概述",
+                content: `
                     <div class="learning-content">
-                        <h4>什么是数据分析？</h4>
+                        <h4>1.1 什么是数据分析</h4>
                         <p>数据分析是指用适当的统计分析方法对收集来的大量数据进行分析，将它们加以汇总和理解并消化，以求最大化地开发数据的功能，发挥数据的作用。数据分析是为了提取有用信息和形成结论，而对数据加以详细研究和概括总结的过程。</p>
                         
-                        <h4>数据分析的重要性</h4>
+                        <p>在当今数据驱动的时代，数据分析已经成为企业决策、科研探索、产品优化等领域不可或缺的核心能力。通过数据分析，我们可以发现隐藏的规律、预测未来趋势、优化业务流程、降低风险、提升效率。</p>
+
+                        <h4>1.2 数据分析的重要性</h4>
                         <ul>
-                            <li>帮助企业做出科学的决策</li>
-                            <li>发现业务问题和机会</li>
-                            <li>优化运营效率和成本</li>
-                            <li>预测未来趋势和发展</li>
-                            <li>提升客户满意度</li>
+                            <li><strong>帮助企业做出科学的决策</strong> - 基于数据而非直觉进行决策</li>
+                            <li><strong>发现业务问题和机会</strong> - 通过数据分析识别潜在问题</li>
+                            <li><strong>优化运营效率和成本</strong> - 分析流程数据，找出瓶颈</li>
+                            <li><strong>预测未来趋势和发展</strong> - 通过历史数据预测未来</li>
+                            <li><strong>提升客户满意度</strong> - 分析客户行为，提供精准服务</li>
                         </ul>
 
-                        <h4>数据分析的流程</h4>
+                        <h4>1.3 数据分析的完整流程</h4>
                         <ol>
-                            <li><strong>需求分析</strong>：明确分析目的和要解决的问题</li>
-                            <li><strong>数据收集</strong>：获取相关的数据来源</li>
-                            <li><strong>数据清洗</strong>：处理缺失值、异常值等问题</li>
-                            <li><strong>数据分析</strong>：运用统计方法进行分析</li>
-                            <li><strong>数据可视化</strong>：将结果以图表形式展示</li>
-                            <li><strong>报告撰写</strong>：总结分析结论和建议</li>
+                            <li><strong>需求分析</strong> - 明确分析目的和要解决的问题</li>
+                            <li><strong>数据收集</strong> - 获取相关的数据来源</li>
+                            <li><strong>数据清洗</strong> - 处理缺失值、异常值等问题</li>
+                            <li><strong>数据探索</strong> - 对数据进行初步探索</li>
+                            <li><strong>数据分析</strong> - 运用统计方法进行深入分析</li>
+                            <li><strong>数据可视化</strong> - 将结果以图表形式展示</li>
+                            <li><strong>报告撰写</strong> - 总结分析结论和建议</li>
                         </ol>
 
                         <div class="highlight-box">
                             <h4>💡 关键点</h4>
-                            <p>数据分析的核心不是复杂的数学公式，而是如何将数据转化为可行动的洞察。好的数据分析应该回答具体的业务问题，而不仅仅是展示数字。</p>
+                            <p>数据分析的核心不是复杂的数学公式，而是如何将数据转化为可行动的洞察。好的数据分析应该回答具体的业务问题。</p>
                         </div>
                     </div>
-                    <button class="complete-btn" onclick="completeModule(1)">完成本节学习</button>
-                </div>
-            </div>
-
-            <!-- Module 2 -->
-            <div class="learning-module">
-                <div class="module-header" onclick="toggleModule(2)">
-                    <div class="module-title">
-                        <span class="module-number">2</span>
-                        数据类型与数据来源
-                    </div>
-                    <span class="module-status pending" id="status-2">未开始</span>
-                </div>
-                <div class="module-content" id="content-2">
+                `,
+                quiz: [
+                    { question: "数据分析的主要目的是什么？", options: ["制作漂亮的图表", "将数据转化为可行动的洞察", "收集尽可能多的数据", "使用复杂的数学公式"], correct: 1, explanation: "数据分析的核心目的是将数据转化为可行动的洞察，帮助做出更好的决策。" },
+                    { question: "数据分析流程的第一步是什么？", options: ["数据清洗", "数据收集", "需求分析", "数据可视化"], correct: 2, explanation: "数据分析流程的第一步是需求分析，明确分析目的和要解决的问题。" },
+                    { question: "以下哪项不是数据分析的重要性体现？", options: ["帮助做出科学决策", "发现业务机会", "完全替代人工判断", "预测未来趋势"], correct: 2, explanation: "数据分析可以辅助决策，但不能完全替代人工判断。" },
+                    { question: "数据可视化的主要作用是？", options: ["让报告更美观", "便于理解和沟通数据洞察", "证明分析的正确性", "增加报告篇幅"], correct: 1, explanation: "数据可视化的主要作用是将复杂的数据和分析结果以直观的方式展示。" },
+                    { question: "好的数据分析报告应该？", options: ["包含尽可能多的图表", "只展示数据，不给出建议", "回答具体的业务问题", "使用最复杂的分析方法"], correct: 2, explanation: "好的数据分析应该回答具体的业务问题，提供可操作的建议。" },
+                    { question: "数据分析的核心驱动因素是？", options: ["先进的软件工具", "海量的数据", "清晰的业务目标", "高超的编程技巧"], correct: 2, explanation: "清晰的业务目标才是数据分析的核心驱动因素。" },
+                    { question: "A/B测试主要体现了数据分析在哪个方面的应用？", options: ["风险评估", "产品优化", "欺诈检测", "销售预测"], correct: 1, explanation: "A/B测试是互联网产品优化的常用方法。" },
+                    { question: "数据探索阶段的主要任务是？", options: ["清洗脏数据", "了解数据特征和分布", "建立预测模型", "生成最终报告"], correct: 1, explanation: "数据探索阶段主要是对数据进行初步了解。" },
+                    { question: "以下关于数据分析的说法正确的是？", options: ["数据分析就是统计建模", "数据越多分析结果就越好", "分析结果应该服务于决策", "数据分析只能由专家完成"], correct: 2, explanation: "数据分析的结果应该服务于决策，而不是为了分析而分析。" },
+                    { question: "数据分析为什么重要？", options: ["让报告看起来专业", "帮助做出更好的决策", "消耗大量数据", "使用各种工具"], correct: 1, explanation: "数据分析最重要的作用是帮助做出更好的决策。" }
+                ]
+            },
+            {
+                id: 2,
+                title: "第2章：数据类型与数据来源",
+                content: `
                     <div class="learning-content">
-                        <h4>数据的基本类型</h4>
-                        <p>在数据分析中，我们通常将数据分为以下几种类型：</p>
+                        <h4>2.1 数据的基本类型</h4>
+                        <p>在数据分析中，我们通常将数据分为以下几种类型，不同类型的数据需要不同的处理方法。</p>
                         
+                        <h4>结构化数据</h4>
+                        <p>结构化数据是指可以用表格形式表示的数据，具有固定的格式和结构。</p>
                         <ul>
-                            <li><strong>结构化数据</strong>：以表格形式存储的数据，如Excel表格、数据库表等</li>
-                            <li><strong>半结构化数据</strong>：具有固定格式但不完全表格化的数据，如JSON、XML等</li>
-                            <li><strong>非结构化数据</strong>：没有固定格式的数据，如文本、图片、音频、视频等</li>
+                            <li>特点：组织严密、易于查询、便于统计分析</li>
+                            <li>例子：学生成绩表、销售订单、用户信息表</li>
                         </ul>
 
-                        <h4>常见数据来源</h4>
-                        <ol>
-                            <li><strong>业务系统数据库</strong>：ERP、CRM、OA等系统产生的数据</li>
-                            <li><strong>用户行为数据</strong>：网站访问、App使用等用户交互数据</li>
-                            <li><strong>传感器数据</strong>：物联网设备采集的环境数据</li>
-                            <li><strong>公开数据源</strong>：政府开放平台、统计年鉴等</li>
-                            <li><strong>第三方数据</strong>：数据供应商提供的外部数据</li>
-                        </ol>
+                        <h4>半结构化数据</h4>
+                        <p>半结构化数据具有一定的组织结构，但不完全符合关系型数据库的表格形式。</p>
+                        <ul>
+                            <li>特点：灵活、可扩展、适合层次化数据</li>
+                            <li>例子：JSON、XML、日志文件</li>
+                        </ul>
+
+                        <h4>非结构化数据</h4>
+                        <p>非结构化数据没有固定的格式和结构，通常需要特殊的处理方法。</p>
+                        <ul>
+                            <li>特点：包含丰富信息、处理复杂</li>
+                            <li>例子：文本、图片、音频、视频</li>
+                        </ul>
+
+                        <h4>2.2 数据的测量尺度</h4>
+                        <ul>
+                            <li><strong>定类数据</strong> - 仅用于分类，没有顺序关系</li>
+                            <li><strong>定序数据</strong> - 有顺序关系，但无法测量差距</li>
+                            <li><strong>定距数据</strong> - 有相等间隔，没有绝对零点</li>
+                            <li><strong>定比数据</strong> - 有相等间隔和绝对零点</li>
+                        </ul>
+
+                        <h4>2.3 常见的数据来源</h4>
+                        <ul>
+                            <li><strong>企业内部数据</strong> - 数据库、CRM、ERP系统等</li>
+                            <li><strong>公开数据集</strong> - 政府数据、Kaggle等平台</li>
+                            <li><strong>第三方数据</strong> - 数据服务商购买</li>
+                            <li><strong>网络爬取</strong> - 从网站获取公开数据</li>
+                        </ul>
+
+                        <h4>2.4 数据质量评估</h4>
+                        <ul>
+                            <li><strong>准确性</strong> - 数据是否真实准确</li>
+                            <li><strong>完整性</strong> - 数据是否完整无缺失</li>
+                            <li><strong>一致性</strong> - 数据格式和定义是否一致</li>
+                            <li><strong>时效性</strong> - 数据是否及时更新</li>
+                            <li><strong>唯一性</strong> - 是否有重复数据</li>
+                        </ul>
 
                         <div class="highlight-box">
-                            <h4>💡 数据质量的重要性</h4>
-                            <p>数据分析的质量很大程度上取决于数据的质量。在开始分析之前，务必了解数据的来源、采集方式和可能存在的问题。</p>
+                            <h4>💡 数据质量决定分析质量</h4>
+                            <p>再好的分析方法也无法弥补数据质量的缺陷。\"垃圾进，垃圾出\"是数据分析的金科玉律。</p>
                         </div>
                     </div>
-                    <button class="complete-btn" onclick="completeModule(2)">完成本节学习</button>
-                </div>
-            </div>
-
-            <!-- Module 3 -->
-            <div class="learning-module">
-                <div class="module-header" onclick="toggleModule(3)">
-                    <div class="module-title">
-                        <span class="module-number">3</span>
-                        数据清洗与预处理
-                    </div>
-                    <span class="module-status pending" id="status-3">未开始</span>
-                </div>
-                <div class="module-content" id="content-3">
+                `,
+                quiz: [
+                    { question: "以下哪种属于结构化数据？", options: ["JSON文件", "Excel表格", "图片文件", "音频文件"], correct: 1, explanation: "Excel表格是典型的结构化数据，具有表格形式和固定的结构。" },
+                    { question: "性别数据属于哪种测量尺度？", options: ["定类数据", "定序数据", "定距数据", "定比数据"], correct: 0, explanation: "性别仅用于分类，没有顺序关系，属于定类数据。" },
+                    { question: "身高数据属于哪种测量尺度？", options: ["定类数据", "定序数据", "定距数据", "定比数据"], correct: 3, explanation: "身高有绝对零点（0），可以计算比率，属于定比数据。" },
+                    { question: "\"垃圾进，垃圾出\"主要强调的是？", options: ["数据处理速度很重要", "数据质量决定分析质量", "数据存储很重要", "数据类型要多样"], correct: 1, explanation: "这句话强调的是数据质量的重要性。" },
+                    { question: "用户满意度数据属于？", options: ["定类数据", "定序数据", "定距数据", "定比数据"], correct: 1, explanation: "用户满意度有顺序关系，但无法测量差距大小，属于定序数据。" },
+                    { question: "非结构化数据的特点是？", options: ["易于查询和统计", "有固定的表格结构", "包含丰富信息但处理复杂", "必须用SQL处理"], correct: 2, explanation: "非结构化数据包含丰富信息，但因为没有固定结构，处理相对复杂。" },
+                    { question: "Kaggle主要是一个什么平台？", options: ["云存储平台", "数据科学竞赛和数据集分享平台", "在线编程教育平台", "社交网络平台"], correct: 1, explanation: "Kaggle是全球最大的数据科学社区。" },
+                    { question: "以下哪个不是评估数据质量的维度？", options: ["准确性", "完整性", "数据量大小", "一致性"], correct: 2, explanation: "数据量大小不是数据质量的评估维度。" },
+                    { question: "数据的时效性是指？", options: ["数据是否真实准确", "数据是否及时更新", "数据是否完整", "数据是否唯一"], correct: 1, explanation: "时效性指的是数据是否及时更新，能否反映当前的情况。" },
+                    { question: "企业内部数据库属于？", options: ["公开数据", "私有数据", "第三方数据", "网络爬取数据"], correct: 1, explanation: "企业内部数据库属于企业私有数据。" }
+                ]
+            },
+            {
+                id: 3,
+                title: "第3章：数据清洗与预处理",
+                content: `
                     <div class="learning-content">
-                        <h4>为什么需要数据清洗？</h4>
+                        <h4>3.1 为什么需要数据清洗？</h4>
                         <p>原始数据通常存在各种问题，如缺失值、重复记录、格式错误等。数据清洗是保证分析结果准确性的关键步骤。</p>
 
-                        <h4>常见的数据问题及处理方法</h4>
+                        <h4>3.2 常见的数据问题</h4>
+                        <ul>
+                            <li><strong>缺失值</strong> - 数据中存在空缺</li>
+                            <li><strong>异常值</strong> - 数据明显偏离正常范围</li>
+                            <li><strong>重复值</strong> - 存在重复的记录</li>
+                            <li><strong>格式错误</strong> - 数据格式不统一</li>
+                        </ul>
                         
-                        <h4>1. 缺失值处理</h4>
-                        <div class="code-block">
-# 删除缺失值
-df.dropna()
+                        <h4>3.3 缺失值处理方法</h4>
+                        <ul>
+                            <li><strong>删除法</strong> - 删除含有缺失值的行或列</li>
+                            <li><strong>均值填充</strong> - 用该列的平均值填充</li>
+                            <li><strong>中位数填充</strong> - 用该列的中位数填充</li>
+                            <li><strong>众数填充</strong> - 用该列的众数填充</li>
+                            <li><strong>插值法</strong> - 使用前后值进行插值</li>
+                        </ul>
 
-# 用均值填充
-df['列名'].fillna(df['列名'].mean())
+                        <h4>3.4 异常值检测方法</h4>
+                        <ul>
+                            <li><strong>3σ方法</strong> - 基于正态分布的异常值检测</li>
+                            <li><strong>IQR方法</strong> - 基于四分位距的箱线图方法</li>
+                            <li><strong>Z-score</strong> - 标准化分数方法</li>
+                        </ul>
 
-# 用中位数填充
-df['列名'].fillna(df['列名'].median())
-
-# 用前后值填充
-df['列名'].fillna(method='ffill')  # 前值填充
-df['列名'].fillna(method='bfill')  # 后值填充
-                        </div>
-
-                        <h4>2. 重复值处理</h4>
-                        <div class="code-block">
-# 检测重复
-df.duplicated()
-
-# 删除重复
-df.drop_duplicates()
-                        </div>
-
-                        <h4>3. 异常值处理</h4>
-                        <div class="code-block">
-# 使用IQR方法检测异常值
-Q1 = df['列名'].quantile(0.25)
-Q3 = df['列名'].quantile(0.75)
-IQR = Q3 - Q1
-lower_bound = Q1 - 1.5 * IQR
-upper_bound = Q3 + 1.5 * IQR
-                        </div>
+                        <h4>3.5 数据标准化与归一化</h4>
+                        <ul>
+                            <li><strong>标准化</strong> - 均值为0，标准差为1</li>
+                            <li><strong>归一化</strong> - 将数据缩放到[0,1]范围</li>
+                        </ul>
 
                         <div class="highlight-box">
                             <h4>💡 数据清洗最佳实践</h4>
                             <p>在清洗数据之前，先备份原始数据。记录每一步的数据处理操作，便于后续追溯和验证。</p>
                         </div>
                     </div>
-                    <button class="complete-btn" onclick="completeModule(3)">完成本节学习</button>
-                </div>
-            </div>
-
-            <!-- Module 4 -->
-            <div class="learning-module">
-                <div class="module-header" onclick="toggleModule(4)">
-                    <div class="module-title">
-                        <span class="module-number">4</span>
-                        描述性统计分析
-                    </div>
-                    <span class="module-status pending" id="status-4">未开始</span>
-                </div>
-                <div class="module-content" id="content-4">
+                `,
+                quiz: [
+                    { question: "数据科学家通常花多少时间在数据清洗和预处理上？", options: ["10%-20%", "30%-40%", "60%-80%", "90%以上"], correct: 2, explanation: "根据统计，数据科学家通常要花60%-80%的时间在数据清洗和预处理上。" },
+                    { question: "以下哪种不是常见的缺失值处理方法？", options: ["均值填充", "中位数填充", "随机生成", "前后填充"], correct: 2, explanation: "随机生成不是推荐的缺失值处理方法，可能会引入额外的噪声和偏差。" },
+                    { question: "IQR方法中，通常用多少倍的IQR来界定异常值？", options: ["1倍", "1.5倍", "2倍", "3倍"], correct: 1, explanation: "通常用1.5倍IQR来界定异常值。" },
+                    { question: "3σ方法假设数据服从什么分布？", options: ["均匀分布", "正态分布", "指数分布", "泊松分布"], correct: 1, explanation: "3σ方法假设数据服从正态分布。" },
+                    { question: "处理异常值时，最合理的第一步是？", options: ["直接删除所有异常值", "分析异常值的业务含义", "用均值替换", "忽略它们"], correct: 1, explanation: "处理异常值的第一步是分析异常值的业务含义。" },
+                    { question: "数据标准化的结果是？", options: ["[0,1]范围", "[-1,1]范围", "均值为0，标准差为1", "中位数为0"], correct: 2, explanation: "数据标准化将数据转换为均值为0，标准差为1的分布。" },
+                    { question: "特征工程的主要目的是？", options: ["让数据看起来更整齐", "提高分析和模型的效果", "减少数据量", "增加数据复杂性"], correct: 1, explanation: "特征工程的主要目的是从原始数据中提取和构造更有用的特征。" },
+                    { question: "数据归一化通常将数据转换到什么范围？", options: ["[-1, 1]", "[0, 1]", "[-∞, +∞]", "[1, 10]"], correct: 1, explanation: "数据归一化通常将数据缩放到[0, 1]或[-1, 1]范围。" },
+                    { question: "数据清洗的最佳实践不包括？", options: ["备份原始数据", "记录处理步骤", "理解数据的业务含义", "一次性解决所有问题"], correct: 3, explanation: "数据清洗是一个迭代过程，很难一次性解决所有问题。" },
+                    { question: "重复值处理的第一步通常是？", options: ["直接删除", "检查重复的原因", "保留第一条", "保留最后一条"], correct: 1, explanation: "处理重复值的第一步是检查重复的原因，再决定如何处理。" }
+                ]
+            },
+            {
+                id: 4,
+                title: "第4章：数据可视化",
+                content: `
                     <div class="learning-content">
-                        <h4>描述性统计概述</h4>
-                        <p>描述性统计是对数据进行初步探索的基本方法，通过计算各种统计指标来描述数据的基本特征。</p>
+                        <h4>4.1 数据可视化的重要性</h4>
+                        <p>数据可视化是将抽象的数据以直观的图表形式展示出来，帮助我们快速理解数据中的模式、趋势和异常。人脑对视觉信息的处理速度比文字快得多。</p>
 
-                        <h4>常用统计指标</h4>
+                        <h4>4.2 常见的图表类型</h4>
                         
-                        <h4>1. 集中趋势指标</h4>
+                        <h4>柱状图</h4>
+                        <p>柱状图适合比较不同类别的数值大小。</p>
                         <ul>
-                            <li><strong>均值（Mean）</strong>：数据的算术平均值，易受极端值影响</li>
-                            <li><strong>中位数（Median）</strong>：数据排序后的中间值，不受极端值影响</li>
-                            <li><strong>众数（Mode）</strong>：出现次数最多的值，适用于分类数据</li>
+                            <li>适用场景：类别对比、时间序列</li>
                         </ul>
 
-                        <h4>2. 离散程度指标</h4>
+                        <h4>折线图</h4>
+                        <p>折线图适合展示数据随时间变化的趋势。</p>
                         <ul>
-                            <li><strong>方差（Variance）</strong>：各数据与均值差的平方的平均值</li>
-                            <li><strong>标准差（Standard Deviation）</strong>：方差的平方根，与原数据单位相同</li>
-                            <li><strong>四分位数（Quartiles）</strong>：将数据分为四等份的三个点</li>
-                            <li><strong>极值（Range）</strong>：最大值与最小值的差</li>
+                            <li>适用场景：趋势分析、时间序列</li>
                         </ul>
 
-                        <div class="code-block">
-import pandas as pd
-import numpy as np
+                        <h4>饼图</h4>
+                        <p>饼图适合展示各部分占整体的比例。</p>
+                        <ul>
+                            <li>适用场景：占比分析</li>
+                            <li>注意：类别不宜过多（建议不超过5类）</li>
+                        </ul>
 
-# 计算描述性统计
-df['列名'].describe()
+                        <h4>散点图</h4>
+                        <p>散点图适合展示两个变量之间的关系。</p>
+                        <ul>
+                            <li>适用场景：相关性分析</li>
+                        </ul>
 
-# 分别计算各项指标
-print('均值:', df['列名'].mean())
-print('中位数:', df['列名'].median())
-print('标准差:', df['列名'].std())
-print('方差:', df['列名'].var())
-                        </div>
+                        <h4>4.3 可视化最佳实践</h4>
+                        <ul>
+                            <li>选择合适的图表类型</li>
+                            <li>保持简洁，避免信息过载</li>
+                            <li>使用恰当的颜色和标注</li>
+                            <li>确保图表清晰易懂</li>
+                        </ul>
 
                         <div class="highlight-box">
-                            <h4>💡 选择正确的统计指标</h4>
-                            <p>根据数据的分布特征选择合适的指标。正态分布数据适合用均值和标准差，偏态分布数据建议使用中位数和四分位数。</p>
+                            <h4>💡 好的图表会说话</h4>
+                            <p>一个好的数据可视化应该让观众在3秒内就能理解你想表达的核心信息。</p>
                         </div>
                     </div>
-                    <button class="complete-btn" onclick="completeModule(4)">完成本节学习</button>
-                </div>
-            </div>
-
-            <!-- Module 5 -->
-            <div class="learning-module">
-                <div class="module-header" onclick="toggleModule(5)">
-                    <div class="module-title">
-                        <span class="module-number">5</span>
-                        数据可视化
-                    </div>
-                    <span class="module-status pending" id="status-5">未开始</span>
-                </div>
-                <div class="module-content" id="content-5">
+                `,
+                quiz: [
+                    { question: "数据可视化的主要目的是？", options: ["让报告更美观", "帮助快速理解数据", "证明分析的正确性", "使用复杂的技术"], correct: 1, explanation: "数据可视化的主要目的是帮助人们快速理解数据中的模式和趋势。" },
+                    { question: "比较不同类别数值大小最适合用什么图表？", options: ["折线图", "柱状图", "饼图", "散点图"], correct: 1, explanation: "柱状图最适合比较不同类别的数值大小。" },
+                    { question: "展示数据随时间变化的趋势最适合用什么图表？", options: ["柱状图", "折线图", "饼图", "散点图"], correct: 1, explanation: "折线图最适合展示数据随时间变化的趋势。" },
+                    { question: "展示各部分占整体的比例最适合用什么图表？", options: ["柱状图", "折线图", "饼图", "散点图"], correct: 2, explanation: "饼图适合展示各部分占整体的比例。" },
+                    { question: "展示两个变量之间的关系最适合用什么图表？", options: ["柱状图", "折线图", "饼图", "散点图"], correct: 3, explanation: "散点图适合展示两个变量之间的关系。" },
+                    { question: "饼图的类别数量最好不超过多少？", options: ["3类", "5类", "10类", "越多越好"], correct: 1, explanation: "饼图的类别建议不超过5类，否则会难以区分。" },
+                    { question: "以下哪种不是可视化的最佳实践？", options: ["选择合适的图表类型", "保持简洁", "使用尽可能多的颜色", "确保图表清晰易懂"], correct: 2, explanation: "使用过多颜色反而会干扰观众理解，应该使用恰当的颜色。" },
+                    { question: "好的数据可视化应该让观众在多长时间内理解核心信息？", options: ["30秒", "3秒", "1分钟", "5分钟"], correct: 1, explanation: "一个好的数据可视化应该让观众在3秒内就能理解核心信息。" },
+                    { question: "热力图最适合展示什么？", options: ["时间趋势", "类别对比", "二维数据的密度或强度", "占比分析"], correct: 2, explanation: "热力图适合展示二维数据的密度或强度分布。" },
+                    { question: "箱线图不能展示的是？", options: ["中位数", "四分位数", "异常值", "具体每个数据点"], correct: 3, explanation: "箱线图展示中位数、四分位数和异常值，但不展示具体每个数据点。" }
+                ]
+            },
+            {
+                id: 5,
+                title: "第5章：统计分析基础",
+                content: `
                     <div class="learning-content">
-                        <h4>为什么数据可视化很重要？</h4>
-                        <p>数据可视化是将复杂数据转化为直观图形的过程，帮助人们快速理解和发现数据中的规律。一图胜千言，好的可视化能让数据讲故事。</p>
+                        <h4>5.1 描述性统计</h4>
+                        <p>描述性统计用于总结和描述数据的基本特征。</p>
 
-                        <h4>常用图表类型及适用场景</h4>
-                        
+                        <h4>集中趋势度量</h4>
                         <ul>
-                            <li><strong>折线图</strong>：展示数据随时间变化的趋势</li>
-                            <li><strong>柱状图</strong>：比较不同类别的大小</li>
-                            <li><strong>饼图</strong>：展示各部分占总体的比例</li>
-                            <li><strong>散点图</strong>：展示两个变量之间的关系</li>
-                            <li><strong>热力图</strong>：展示数据的密度或强度分布</li>
-                            <li><strong>箱线图</strong>：展示数据的分布和异常值</li>
+                            <li><strong>均值</strong> - 所有数值的平均</li>
+                            <li><strong>中位数</strong> - 排序后中间的数值</li>
+                            <li><strong>众数</strong> - 出现次数最多的数值</li>
                         </ul>
 
-                        <h4>Python数据可视化示例</h4>
-                        <div class="code-block">
-import matplotlib.pyplot as plt
-import seaborn as sns
+                        <h4>离散程度度量</h4>
+                        <ul>
+                            <li><strong>方差</strong> - 数据偏离均值的程度</li>
+                            <li><strong>标准差</strong> - 方差的平方根</li>
+                            <li><strong>四分位距</strong> - 上四分位数与下四分位数之差</li>
+                        </ul>
 
-# 设置中文字体
-plt.rcParams['font.sans-serif'] = ['SimHei']
-plt.rcParams['axes.unicode_minus'] = False
+                        <h4>5.2 概率分布</h4>
+                        <p>概率分布描述了随机变量取不同值的概率。</p>
+                        <ul>
+                            <li><strong>正态分布</strong> - 最常见的连续分布，呈钟形曲线</li>
+                            <li><strong>二项分布</strong> - 描述独立重复试验的成功次数</li>
+                        </ul>
 
-# 折线图
-plt.figure(figsize=(10, 6))
-plt.plot(x, y, marker='o')
-plt.title('趋势图')
-plt.xlabel('时间')
-plt.ylabel('数值')
-plt.grid(True)
-plt.show()
-
-# 柱状图
-plt.figure(figsize=(10, 6))
-plt.bar(categories, values)
-plt.title('对比图')
-plt.xlabel('类别')
-plt.ylabel('数值')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
-                        </div>
+                        <h4>5.3 相关与因果</h4>
+                        <p>相关关系不等于因果关系！两个变量相关可能只是巧合，或者都受第三个变量影响。</p>
 
                         <div class="highlight-box">
-                            <h4>💡 可视化设计原则</h4>
-                            <p>保持简洁、突出重点、选择合适的图表类型、使用清晰的标签和标题。避免过度装饰和误导性的可视化。</p>
+                            <h4>💡 重要区分</h4>
+                            <p>相关关系：A变化时B也变化<br>因果关系：A的变化直接导致B的变化</p>
                         </div>
                     </div>
-                    <button class="complete-btn" onclick="completeModule(5)">完成本节学习</button>
-                </div>
-            </div>
-
-            <!-- Module 6 -->
-            <div class="learning-module">
-                <div class="module-header" onclick="toggleModule(6)">
-                    <div class="module-title">
-                        <span class="module-number">6</span>
-                        相关分析与回归分析
-                    </div>
-                    <span class="module-status pending" id="status-6">未开始</span>
-                </div>
-                <div class="module-content" id="content-6">
+                `,
+                quiz: [
+                    { question: "以下哪个不是集中趋势的度量？", options: ["均值", "中位数", "方差", "众数"], correct: 2, explanation: "方差是离散程度的度量，不是集中趋势的度量。" },
+                    { question: "当数据存在极端值时，哪个更适合代表集中趋势？", options: ["均值", "中位数", "众数", "都一样"], correct: 1, explanation: "中位数受极端值影响较小，更适合存在极端值的情况。" },
+                    { question: "正态分布呈什么形状？", options: ["U形", "钟形", "直线", "均匀分布"], correct: 1, explanation: "正态分布呈钟形曲线，中间高两端低。" },
+                    { question: "标准差是？", options: ["方差的平方", "方差的平方根", "均值的平方", "中位数的平方根"], correct: 1, explanation: "标准差是方差的平方根。" },
+                    { question: "相关关系和因果关系的关系是？", options: ["相关关系就是因果关系", "有相关关系一定有因果关系", "相关关系不等于因果关系", "两者没有关系"], correct: 2, explanation: "相关关系不等于因果关系，相关可能只是巧合或受第三个变量影响。" },
+                    { question: "以下哪个不是离散程度的度量？", options: ["方差", "标准差", "均值", "四分位距"], correct: 2, explanation: "均值是集中趋势的度量，不是离散程度的度量。" },
+                    { question: "在正态分布中，约多少数据落在均值±1个标准差范围内？", options: ["50%", "68%", "95%", "99.7%"], correct: 1, explanation: "在正态分布中，约68%数据落在均值±1个标准差范围内。" },
+                    { question: "在正态分布中，约多少数据落在均值±2个标准差范围内？", options: ["50%", "68%", "95%", "99.7%"], correct: 2, explanation: "在正态分布中，约95%数据落在均值±2个标准差范围内。" },
+                    { question: "如果一组数据的均值大于中位数，说明数据分布是？", options: ["左偏", "右偏", "对称", "均匀"], correct: 1, explanation: "均值大于中位数说明数据右偏，有较大的极端值拉高了均值。" },
+                    { question: "四分位距是？", options: ["最大值减最小值", "上四分位数减下四分位数", "均值减中位数", "标准差乘以2"], correct: 1, explanation: "四分位距是上四分位数减下四分位数，表示中间50%数据的范围。" }
+                ]
+            },
+            {
+                id: 6,
+                title: "第6章：数据分析报告撰写",
+                content: `
                     <div class="learning-content">
-                        <h4>相关分析</h4>
-                        <p>相关分析用于研究两个或多个变量之间的关联程度。相关系数的取值范围是-1到1，绝对值越接近1表示相关性越强。</p>
+                        <h4>6.1 报告的重要性</h4>
+                        <p>再好的分析如果没有清晰的报告，也无法产生价值。报告是将分析成果传递给决策者的桥梁。</p>
 
+                        <h4>6.2 报告的基本结构</h4>
+                        <ol>
+                            <li><strong>摘要</strong> - 核心结论和建议</li>
+                            <li><strong>背景介绍</strong> - 分析的目的和背景</li>
+                            <li><strong>数据说明</strong> - 数据来源和处理方法</li>
+                            <li><strong>分析过程</strong> - 主要的分析方法</li>
+                            <li><strong>结论与建议</strong> - 分析发现和行动建议</li>
+                            <li><strong>附录</strong> - 补充材料</li>
+                        </ol>
+
+                        <h4>6.3 报告撰写原则</h4>
                         <ul>
-                            <li><strong>r > 0</strong>：正相关（一个增加，另一个也增加）</li>
-                            <li><strong>r < 0</strong>：负相关（一个增加，另一个减少）</li>
-                            <li><strong>r = 0</strong>：无相关</li>
-                            <li><strong>|r| > 0.7</strong>：强相关</li>
-                            <li><strong>0.4 < |r| < 0.7</strong>：中等相关</li>
-                            <li><strong>|r| < 0.4</strong>：弱相关</li>
+                            <li>以受众为中心，考虑读者背景</li>
+                            <li>结论先行，先讲核心内容</li>
+                            <li>用数据说话，避免主观臆断</li>
+                            <li>提供可执行的建议</li>
+                            <li>保持简洁，避免冗余</li>
                         </ul>
 
-                        <h4>回归分析</h4>
-                        <p>回归分析用于建立变量之间的数学模型，预测一个变量随其他变量的变化关系。最常用的是线性回归。</p>
-
-                        <div class="code-block">
-from scipy import stats
-import numpy as np
-
-# 计算相关系数
-correlation = df['变量1'].corr(df['变量2'])
-
-# 线性回归
-slope, intercept, r_value, p_value, std_err = stats.linregress(
-    df['自变量'], df['因变量']
-)
-
-print(f'斜率: {slope}')
-print(f'截距: {intercept}')
-print(f'R²: {r_value**2}')
-print(f'P值: {p_value}')
-                        </div>
-
                         <div class="highlight-box">
-                            <h4>💡 相关不等于因果</h4>
-                            <p>相关分析只能说明变量之间存在关联，但不能证明因果关系。要确定因果关系，需要控制其他变量或进行实验设计。</p>
+                            <h4>💡 好报告的标准</h4>
+                            <p>读者看完报告后应该知道：发生了什么？为什么发生？应该怎么做？</p>
                         </div>
                     </div>
-                    <button class="complete-btn" onclick="completeModule(6)">完成本节学习</button>
-                </div>
-            </div>
+                `,
+                quiz: [
+                    { question: "数据分析报告中最重要的部分是？", options: ["技术细节", "结论和建议", "数据说明", "附录"], correct: 1, explanation: "结论和建议是报告中最重要的部分，是分析价值的体现。" },
+                    { question: "报告撰写应该以什么为中心？", options: ["分析师", "受众", "技术", "数据量"], correct: 1, explanation: "报告应该以受众为中心，考虑读者的背景和需求。" },
+                    { question: "\"结论先行\"的意思是？", options: ["先讲核心结论", "先讲技术细节", "先讲数据来源", "先讲分析过程"], correct: 0, explanation: "结论先行是指先讲核心结论，再展开细节。" },
+                    { question: "好的报告建议应该是？", options: ["空泛的", "可执行的", "复杂的", "不需要依据的"], correct: 1, explanation: "好的建议应该是具体、可执行的。" },
+                    { question: "以下哪个不是报告撰写的原则？", options: ["以受众为中心", "结论先行", "用数据说话", "越复杂越好"], correct: 3, explanation: "报告应该简洁清晰，不是越复杂越好。" },
+                    { question: "报告摘要应该放在？", options: ["最前面", "中间", "最后面", "无所谓"], correct: 0, explanation: "摘要应该放在最前面，让读者快速了解核心内容。" },
+                    { question: "报告中的数据来源说明是为了？", options: ["增加篇幅", "体现分析的可信度", "展示技术能力", "没什么用"], correct: 1, explanation: "说明数据来源可以体现分析的可信度和透明度。" },
+                    { question: "好的报告应该避免？", options: ["用数据说话", "主观臆断", "提供建议", "简洁明了"], correct: 1, explanation: "报告应该用数据说话，避免主观臆断。" },
+                    { question: "报告的附录通常包含？", options: ["核心结论", "详细数据和补充材料", "建议", "摘要"], correct: 1, explanation: "附录通常包含详细数据和补充材料，供需要深入了解的读者参考。" },
+                    { question: "读者看完报告后应该知道的不包括？", options: ["发生了什么", "为什么发生", "怎么做饭", "应该怎么做"], correct: 2, explanation: "报告应该回答发生了什么、为什么发生、应该怎么做。" }
+                ]
+            }
+        ];
 
-            <div style="text-align: center; margin-top: 3rem;">
-                <button class="complete-btn" style="font-size: 1.2rem; padding: 1rem 3rem;" onclick="startQuiz()">
-                    开始测试
-                </button>
-            </div>
-        </div>
-    </section>
+        let currentChapterIndex = 0;
+        let completedChapters = new Set();
+        let selectedAnswers = {};
 
-    <!-- Quiz Section -->
-    <section class="quiz-section" id="quizSection">
-        <div class="container">
-            <div class="quiz-container">
-                <div class="quiz-header">
-                    <h2>📝 课程测试</h2>
-                    <p>完成所有学习内容后，进行测试检验学习效果</p>
-                </div>
-                
-                <div id="quizContent"></div>
-                
-                <button class="submit-quiz-btn" id="submitQuizBtn" onclick="submitQuiz()">
-                    提交答案
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // 学习进度追踪
-        let completedModules = new Set();
-        let totalModules = 6;
-
-        // 切换模块展开/收起
-        function toggleModule(moduleNumber) {
-            const content = document.getElementById(`content-${moduleNumber}`);
-            content.classList.toggle('active');
+        function init() {
+            loadProgress();
+            renderChapterNav();
+            loadChapter(0);
         }
 
-        // 完成模块学习
-        function completeModule(moduleNumber) {
-            if (!completedModules.has(moduleNumber)) {
-                completedModules.add(moduleNumber);
-                
-                // 更新状态标签
-                const status = document.getElementById(`status-${moduleNumber}`);
-                status.textContent = '已完成';
-                status.className = 'module-status completed';
-                
-                // 更新进度条
-                updateProgress();
-                
-                // 保存到本地存储
-                saveProgress();
+        function loadProgress() {
+            const saved = localStorage.getItem('dataAnalysisChapters');
+            if (saved) {
+                completedChapters = new Set(JSON.parse(saved));
             }
         }
 
-        // 更新进度条
+        function saveProgress() {
+            localStorage.setItem('dataAnalysisChapters', JSON.stringify([...completedChapters]));
+        }
+
         function updateProgress() {
-            const percentage = Math.round((completedModules.size / totalModules) * 100);
+            const percentage = Math.round((completedChapters.size / chapters.length) * 100);
             document.getElementById('progressPercentage').textContent = percentage + '%';
             document.getElementById('progressFill').style.width = percentage + '%';
         }
 
-        // 保存进度到本地存储
-        function saveProgress() {
-            localStorage.setItem('dataAnalysisProgress', JSON.stringify([...completedModules]));
-        }
-
-        // 从本地存储加载进度
-        function loadProgress() {
-            const saved = localStorage.getItem('dataAnalysisProgress');
-            if (saved) {
-                completedModules = new Set(JSON.parse(saved));
-                completedModules.forEach(num => {
-                    const status = document.getElementById(`status-${num}`);
-                    status.textContent = '已完成';
-                    status.className = 'module-status completed';
-                });
-                updateProgress();
-            }
-        }
-
-        // 测试题目
-        const questions = [
-            {
-                question: "数据分析的核心目标是什么？",
-                options: [
-                    "使用复杂的数学公式",
-                    "将数据转化为可行动的洞察",
-                    "制作漂亮的图表",
-                    "收集尽可能多的数据"
-                ],
-                correct: 1
-            },
-            {
-                question: "数据分析流程的第一步是什么？",
-                options: [
-                    "数据清洗",
-                    "需求分析",
-                    "数据可视化",
-                    "数据收集"
-                ],
-                correct: 1
-            },
-            {
-                question: "以下哪种数据类型是结构化数据？",
-                options: [
-                    "JSON文件",
-                    "图片文件",
-                    "Excel表格",
-                    "视频文件"
-                ],
-                correct: 2
-            },
-            {
-                question: "处理缺失值时，用均值填充适用于什么情况？",
-                options: [
-                    "数据存在极端值时",
-                    "数据分布比较均匀时",
-                    "数据为分类变量时",
-                    "缺失比例超过50%时"
-                ],
-                correct: 1
-            },
-            {
-                question: "中位数相比均值有什么优势？",
-                options: [
-                    "计算更简单",
-                    "不受极端值影响",
-                    "能处理文本数据",
-                    "适合大量数据"
-                ],
-                correct: 1
-            },
-            {
-                question: "标准差用于衡量什么？",
-                options: [
-                    "数据的中心位置",
-                    "数据的离散程度",
-                    "数据的增长速度",
-                    "数据的相关性"
-                ],
-                correct: 1
-            },
-            {
-                question: "展示数据随时间变化的趋势，应该使用什么图表？",
-                options: [
-                    "饼图",
-                    "柱状图",
-                    "折线图",
-                    "散点图"
-                ],
-                correct: 2
-            },
-            {
-                question: "相关系数r的取值范围是多少？",
-                options: [
-                    "0到1",
-                    "-1到0",
-                    "-1到1",
-                    "负无穷到正无穷"
-                ],
-                correct: 2
-            },
-            {
-                question: "相关分析能证明两个变量之间存在因果关系吗？",
-                options: [
-                    "能",
-                    "不能",
-                    "取决于相关系数的大小",
-                    "取决于样本量大小"
-                ],
-                correct: 1
-            },
-            {
-                question: "箱线图主要用于展示什么？",
-                options: [
-                    "数据的变化趋势",
-                    "不同类别的对比",
-                    "数据的分布和异常值",
-                    "各部分的比例关系"
-                ],
-                correct: 2
-            }
-        ];
-
-        let selectedAnswers = {};
-
-        // 开始测试
-        function startQuiz() {
-            if (completedModules.size < totalModules) {
-                alert(`请先完成所有课程学习！当前进度：${completedModules.size}/${totalModules}`);
-                return;
-            }
+        function renderChapterNav() {
+            const nav = document.getElementById('chapterNav');
+            nav.innerHTML = '';
             
-            document.getElementById('quizSection').classList.add('active');
-            document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth' });
-            renderQuestions();
-        }
-
-        // 渲染问题
-        function renderQuestions() {
-            const quizContent = document.getElementById('quizContent');
-            quizContent.innerHTML = '';
-            
-            questions.forEach((q, index) => {
-                const questionHTML = `
-                    <div class="question-container fade-in" style="animation-delay: ${index * 0.1}s">
-                        <span class="question-number">第 ${index + 1} 题</span>
-                        <p class="question-text">${q.question}</p>
-                        <div class="options">
-                            ${q.options.map((opt, optIndex) => `
-                                <div class="option" onclick="selectOption(${index}, ${optIndex})">
-                                    <div class="option-radio"></div>
-                                    <span>${opt}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-                quizContent.innerHTML += questionHTML;
+            chapters.forEach((chapter, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'chapter-btn';
+                if (index === currentChapterIndex) btn.classList.add('active');
+                if (completedChapters.has(chapter.id)) btn.classList.add('completed');
+                btn.textContent = chapter.title;
+                btn.onclick = () => loadChapter(index);
+                nav.appendChild(btn);
             });
         }
 
-        // 选择选项
+        function loadChapter(index) {
+            currentChapterIndex = index;
+            const chapter = chapters[index];
+            
+            document.getElementById('chapterTitle').textContent = chapter.title;
+            document.getElementById('learningContent').innerHTML = chapter.content;
+            
+            document.getElementById('quizSection').classList.remove('active');
+            
+            renderChapterNav();
+            updateProgress();
+        }
+
+        function completeChapter() {
+            const chapter = chapters[currentChapterIndex];
+            if (!completedChapters.has(chapter.id)) {
+                completedChapters.add(chapter.id);
+                saveProgress();
+                renderChapterNav();
+                updateProgress();
+                alert('恭喜完成本章学习！现在可以进行测试了。');
+            } else {
+                alert('本章已经完成了！');
+            }
+        }
+
+        function startQuiz() {
+            const chapter = chapters[currentChapterIndex];
+            
+            if (!completedChapters.has(chapter.id)) {
+                alert('请先完成本章学习！');
+                return;
+            }
+
+            selectedAnswers = {};
+            
+            document.querySelector('.quiz-header h2').textContent = '📝 ' + chapter.title + ' 测试';
+            document.getElementById('quizSection').classList.add('active');
+            
+            renderQuiz(chapter);
+            document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderQuiz(chapter) {
+            const quizContent = document.getElementById('quizContent');
+            quizContent.innerHTML = '';
+            
+            chapter.quiz.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container fade-in';
+                questionDiv.style.animationDelay = (index * 0.1) + 's';
+                
+                questionDiv.innerHTML = `
+                    <span class="question-number">第 ${index + 1} 题</span>
+                    <p class="question-text">${q.question}</p>
+                    <div class="options">
+                        ${q.options.map((opt, optIndex) => `
+                            <div class="option" data-question="${index}" data-option="${optIndex}" onclick="selectOption(${index}, ${optIndex})">
+                                <div class="option-radio"></div>
+                                <span>${opt}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="explanation" id="explanation-${index}">
+                        <h5>📚 解析</h5>
+                        <p>${q.explanation}</p>
+                    </div>
+                `;
+                
+                quizContent.appendChild(questionDiv);
+            });
+            
+            document.getElementById('submitQuizBtn').style.display = 'block';
+        }
+
         function selectOption(questionIndex, optionIndex) {
             selectedAnswers[questionIndex] = optionIndex;
             
-            // 更新UI
-            const questionContainer = document.querySelectorAll('.question-container')[questionIndex];
-            const options = questionContainer.querySelectorAll('.option');
+            const questionDiv = document.querySelectorAll('.question-container')[questionIndex];
+            const options = questionDiv.querySelectorAll('.option');
             
             options.forEach((opt, idx) => {
                 opt.classList.remove('selected');
@@ -1166,18 +1114,19 @@ print(f'P值: {p_value}')
             });
         }
 
-        // 提交测试
         function submitQuiz() {
-            if (Object.keys(selectedAnswers).length < questions.length) {
+            const chapter = chapters[currentChapterIndex];
+            
+            if (Object.keys(selectedAnswers).length < chapter.quiz.length) {
                 alert('请完成所有题目后再提交！');
                 return;
             }
 
             let correctCount = 0;
             
-            questions.forEach((q, index) => {
-                const questionContainer = document.querySelectorAll('.question-container')[index];
-                const options = questionContainer.querySelectorAll('.option');
+            chapter.quiz.forEach((q, index) => {
+                const questionDiv = document.querySelectorAll('.question-container')[index];
+                const options = questionDiv.querySelectorAll('.option');
                 
                 options.forEach((opt, optIndex) => {
                     opt.style.pointerEvents = 'none';
@@ -1188,37 +1137,34 @@ print(f'P值: {p_value}')
                         opt.classList.add('incorrect');
                     }
                 });
-            });
-
-            // 计算分数
-            questions.forEach((q, index) => {
+                
+                document.getElementById(`explanation-${index}`).classList.add('show');
+                
                 if (selectedAnswers[index] === q.correct) {
                     correctCount++;
                 }
             });
 
-            const score = Math.round((correctCount / questions.length) * 100);
+            const score = Math.round((correctCount / chapter.quiz.length) * 100);
             
-            // 显示结果
             setTimeout(() => {
-                showResults(score, correctCount);
+                showResults(score, correctCount, chapter.quiz.length);
             }, 500);
         }
 
-        // 显示结果
-        function showResults(score, correctCount) {
+        function showResults(score, correctCount, total) {
             const quizContent = document.getElementById('quizContent');
             const submitBtn = document.getElementById('submitQuizBtn');
             
             let message = '';
             if (score >= 90) {
-                message = '🎉 优秀！您已经掌握了数据分析技术的核心知识！';
+                message = '🎉 优秀！你掌握得非常好！';
             } else if (score >= 70) {
-                message = '👍 良好！建议复习一下答错的题目。';
+                message = '👍 良好！建议回顾一下答错的题目。';
             } else if (score >= 60) {
-                message = '💪 合格！建议重新学习课程内容。';
+                message = '💪 合格！建议重新学习本章内容。';
             } else {
-                message = '📚 需要继续努力！建议重新学习课程后再测试。';
+                message = '📚 需要继续努力！建议重新学习后再测试。';
             }
 
             quizContent.innerHTML = `
@@ -1230,36 +1176,32 @@ print(f'P值: {p_value}')
                         </div>
                     </div>
                     <h2 class="result-message">${message}</h2>
-                    <p class="result-details">正确 ${correctCount} 题，共 ${questions.length} 题</p>
-                    <button class="retry-btn" onclick="retryQuiz()">重新测试</button>
-                    <a href="index.html" class="retry-btn" style="background-color: var(--secondary-color);">返回首页</a>
+                    <p class="result-details">正确 ${correctCount} 题，共 ${total} 题</p>
+                    <div class="action-buttons">
+                        <button class="retry-btn" onclick="retryQuiz()">重新测试</button>
+                        <button class="next-chapter-btn" onclick="nextChapter()">下一章</button>
+                    </div>
                 </div>
             `;
             
             submitBtn.style.display = 'none';
-            
-            // 保存测试结果
-            localStorage.setItem('dataAnalysisQuizScore', score);
         }
 
-        // 重新测试
         function retryQuiz() {
             selectedAnswers = {};
-            document.getElementById('quizSection').classList.remove('active');
-            document.querySelector('.learning-section').scrollIntoView({ behavior: 'smooth' });
-            
-            setTimeout(() => {
-                document.getElementById('quizSection').classList.add('active');
-                document.getElementById('quizContent').innerHTML = '';
-                document.getElementById('submitQuizBtn').style.display = 'block';
-                renderQuestions();
-            }, 500);
+            const chapter = chapters[currentChapterIndex];
+            renderQuiz(chapter);
         }
 
-        // 初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            loadProgress();
-        });
+        function nextChapter() {
+            if (currentChapterIndex < chapters.length - 1) {
+                loadChapter(currentChapterIndex + 1);
+            } else {
+                alert('恭喜你完成了所有章节的学习！');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
